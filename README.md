@@ -36,3 +36,25 @@ gol.measurement()
 The method also has a function to save final states with oscillation periods larger than 2 so that the user may check them out if they are curious. 
 
 ## Example measurement for 50 x 50 lattice
+![active](active.png)
+![times](times.png)
+
+## Centre-of-mass velocity
+The GoL.py file has a function that takes in an arbitrary glider as an ndarray, simulates the game of life using it and measures the centre-of-mass velocity of the glider.
+```python
+# defining the glider
+g = np.array(([0, 1, 0], [0, 0, 1], [1, 1, 1]))
+glider = np.zeros((size, size))
+glider[int(size/2)-1:int(size/2)+2, int(size/2)-1:int(size/2)+2] = g
+
+# measuring com velocity
+cm_glider(size, glider)
+```
+Output:
+```
+Velocity: [-0.25 -0.25]
+Speed: 0.35355339059327484
+This would be correct in a continuous space, but the game of life runs on a discrete lattice.
+This means the norm of the velocity isn't actually the speed of the glider.
+```
+
