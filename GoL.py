@@ -46,6 +46,7 @@ class Conway:
         fig = plt.figure(figsize = (10, 10))
         im = plt.imshow(self.lattice, interpolation = "none", aspect = "auto", vmin = -0.25, vmax = 1, cmap = "Greys_r")
         plt.title("Conway's Game of Life")
+        plt.tight_layout()
 
         def animate(i):
             self.step_gol()
@@ -149,7 +150,6 @@ def cm_glider(size, glider):
         game_of_life.step_gol()
 
     center_mass = np.array(center_mass)
-    print(center_mass)
     displacement = np.zeros((len(center_mass)-1, 2))
 
     # calculates the displacement while also accounting for boundaries
@@ -160,10 +160,9 @@ def cm_glider(size, glider):
         elif np.abs(diff[1]) > int(size/2):
             diff[1] -= size
         displacement[i] = diff
-    print(displacement)
 
     speed = np.average(displacement, axis=0)
     print("Velocity:", speed)
     print("Speed:", np.linalg.norm(speed))
-    print("This would be correct in a continuous space, but the game of life runs on a discrete lattice. This means the "
-          "norm of the velocity isn't actually the speed of the glider.")
+    print("This would be correct in a continuous space, but the game of life runs on a discrete lattice.")
+    print("This means the norm of the velocity isn't actually the speed of the glider.")
